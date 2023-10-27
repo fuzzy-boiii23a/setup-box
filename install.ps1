@@ -40,6 +40,7 @@ winget install -e --id Python.Python.3.10
 
 # install rust
 curl.exe https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe -o rustup-init.exe
+.\rustup-init.exe
 Remove-Item rustup-init.exe -Force
 
 # refresh PATH so git, clang, and rust can be used
