@@ -1,9 +1,6 @@
 # enable darkmode
 Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Personalize -Name AppsUseLightTheme -Value 0
 
-# remove telemetry, disable services, and bloat
-Start-Process -FilePath powershell.exe -ArgumentList {"-ExecutionPolicy Bypass -File clean_everything.ps1"} -verb RunAs
-
 # install winget https://learn.microsoft.com/en-us/windows/package-manager/winget/
 if (!(Get-Command "winget" -errorAction SilentlyContinue))
 {
@@ -15,6 +12,9 @@ if (!(Get-Command "winget" -errorAction SilentlyContinue))
   Add-AppxPackage Microsoft.UI.Xaml.2.7.x64.appx
   Add-AppxPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
 }
+
+# remove telemetry, disable services, and bloat
+Start-Process -FilePath powershell.exe -ArgumentList {"-ExecutionPolicy Bypass -File clean_everything.ps1"} -verb RunAs
 
 # install VS with SDK and WDK
 winget install --source winget --exact --id Microsoft.VisualStudio.2022.Community --accept-source-agreements --override "--wait --quiet --includeRecommended --add ProductLang En-us --config $pwd\BuildTools.vsconfig"
