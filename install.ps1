@@ -9,33 +9,33 @@ Add-AppxPackage Microsoft.UI.Xaml.2.7.x64.appx
 Add-AppxPackage Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
 
 # install VS with SDK and WDK
-winget install --source winget --exact --id Microsoft.VisualStudio.2022.Community --override "--wait --quiet --includeRecommended --add ProductLang En-us --config $pwd\BuildTools.vsconfig"
-winget install --source winget --exact --id Microsoft.WindowsSDK.10.0.22621
-winget install --source winget --exact --id Microsoft.WindowsWDK.10.0.22621
+winget install --source winget --exact --id Microsoft.VisualStudio.2022.Community --accept-source-agreements --override "--wait --quiet --includeRecommended --add ProductLang En-us --config $pwd\BuildTools.vsconfig"
+winget install --source winget --exact --id Microsoft.WindowsSDK.10.0.22621 --accept-source-agreements
+winget install --source winget --exact --id Microsoft.WindowsWDK.10.0.22621 --accept-source-agreements
 
 # install NeoVim
 winget install Neovim.Neovim --accept-source-agreements
 
 # install chrome
-winget install -e --id Google.Chrome
+winget install -e --id Google.Chrome --accept-source-agreements
 
 # install git
-winget install -e --id Git.Git
+winget install -e --id Git.Git --accept-source-agreements
 
 # install make
-winget install GnuWin32.Make
+winget install GnuWin32.Make --accept-source-agreements
 
 # install llvm/clang
-winget install -e --id LLVM.LLVM
+winget install -e --id LLVM.LLVM --accept-source-agreements
 
 # install ripgrep
-winget install BurntSushi.ripgrep.MSVC
+winget install BurntSushi.ripgrep.MSVC --accept-source-agreements
 
 # install lazygit
-winget install JesseDuffield.lazygit
+winget install JesseDuffield.lazygit --accept-source-agreements
 
 # install python3
-winget install -e --id Python.Python.3.10
+winget install -e --id Python.Python.3.10 --accept-source-agreements
 
 # install rust
 curl.exe https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe -o rustup-init.exe
