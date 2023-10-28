@@ -16,9 +16,8 @@ winget install --source winget --exact --id Microsoft.WindowsWDK.10.0.22621
 # install NeoVim
 winget install Neovim.Neovim
 
-# install lazyvim
-git clone https://github.com/LazyVim/starter $env:LOCALAPPDATA\nvim
-Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
+# install chrome
+winget install -e --id Google.Chrome
 
 # install git
 winget install -e --id Git.Git
@@ -45,6 +44,10 @@ Remove-Item rustup-init.exe -Force
 
 # refresh PATH so git, clang, and rust can be used
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") 
+
+# install lazyvim
+git clone https://github.com/LazyVim/starter $env:LOCALAPPDATA\nvim
+Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
 
 # install cygwin with autoconf, bash, and make
 curl.exe https://cygwin.com/setup-x86_64.exe -o cygwin-setup.exe
