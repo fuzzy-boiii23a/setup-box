@@ -58,7 +58,6 @@ Disable-WindowsErrorReporting
 # Disable sample submit and lower CPU usage such that i can only use 5%
 Set-MpPreference -SubmitSamplesConsent $false -ScanAvgCPULoadFactor 5
 
-
 # Basic telemetry disabling script
 Add-Content $ENV:WinDir\System32\Drivers\etc\hosts "## BEGIN Windows 10 privacy settings"
 Add-Content $ENV:WinDir\System32\Drivers\etc\hosts "127.0.0.1 vortex.data.microsoft.com"
@@ -122,11 +121,32 @@ Add-Content $ENV:WinDir\System32\Drivers\etc\hosts "## END Windows 10 privacy se
 # Disables web search in the search box
 [PsRegistry.Local]::SetDwordValue("SOFTWARE\Microsoft\Windows\CurrentVersion\Search", "BingSearchEnabled", 0)
 
-# Block telemetry services
-Get-Service DiagTrack | Set-Service -StartupType Disabled
-Get-Service DmwapPushService | Set-Service -StartupType Disabled
+# Block telemetry
 [PsRegistry.Global]::SetDwordValue("SOFTWARE\Policies\Microsoft\Windows\DataCollection", "AllowTelemetry", 0)
 
 # Disable UserAssist
 [PsRegistry.Local]::SetDwordValue("SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "Start_TrackProgs", 0)
 [PsRegistry.Local]::SetDwordValue("SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced", "Start_TrackEnabled", 0)
+
+$services = @(
+    "diagnosticshub.standardcollector.service" # Microsoft (R) Diagnostics Hub Standard Collector Service
+    "DiagTrack"                                # Diagnostics Tracking Service
+    "dmwappushservice"                         # WAP Push Message Routing Service (see known issues)
+    "lfsvc"                                    # Geolocation Service
+    "MapsBroker"                               # Downloaded Maps Manager
+    "NetTcpPortSharing"                        # Net.Tcp Port Sharing Service
+    "RemoteAccess"                             # Routing and Remote Access
+    "RemoteRegistry"                           # Remote Registry
+    "SharedAccess"                             # Internet Connection Sharing (ICS)
+    "TrkWks"                                   # Distributed Link Tracking Client
+    "WbioSrvc"                                 # Windows Biometric Service (required for Fingerprint reader / facial detection)
+    "WMPNetworkSvc"                            # Windows Media Player Network Sharing Service
+    "XblAuthManager"                           # Xbox Live Auth Manager
+    "XblGameSave"                              # Xbox Live Game Save Service
+    "XboxNetApiSvc"                            # Xbox Live Networking Service
+)
+
+foreach ($service in $services) {
+    Write-Output "Trying to disable $service"
+    Get-Service -Name $service | Set-Service -StartupType Disabled
+}
