@@ -5,7 +5,7 @@ Set-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\Pe
 Start-Process -FilePath powershell.exe -ArgumentList {"-ExecutionPolicy Bypass -File clean_everything.ps1"} -verb RunAs
 
 # install winget https://learn.microsoft.com/en-us/windows/package-manager/winget/
- if (!(Get-Command "winget" -errorAction SilentlyContinue)){
+if (!(Get-Command "winget" -errorAction SilentlyContinue))
 {
   Write-Information "Downloading WinGet and its dependencies..."
   Invoke-WebRequest -Uri https://aka.ms/getwinget -OutFile Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
