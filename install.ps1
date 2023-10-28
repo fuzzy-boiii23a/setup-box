@@ -70,6 +70,9 @@ Remove-Item cygwin-setup.exe -Force
 # enable hyper-v
 Start-Process -FilePath powershell.exe -ArgumentList {"Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All -NoRestart"} -verb RunAs
 
+# remove telemetry and disable services
+Start-Process -FilePath powershell.exe -ArgumentList {"-ExecutionPolicy Bypass -File disable-telemetry.ps1"} -verb RunAs
+
 # remove bloat
 taskkill /f /im msedge.exe
 winget uninstall Microsoft.Edge --accept-source-agreements --silent
