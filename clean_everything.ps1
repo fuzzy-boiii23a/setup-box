@@ -1,3 +1,6 @@
+# disable UAC
+Set-ItemProperty -Path REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System -Name ConsentPromptBehaviorAdmin -Value 0
+
 # https://raw.githubusercontent.com/hugsy/modern.ie-vagrant/master/scripts/DisableWin10Telemetry.ps1
 Add-Type @"
 using System;
@@ -151,11 +154,20 @@ foreach ($service in $services) {
     Get-Service -Name $service | Set-Service -StartupType Disabled
 }
 
-# remove bloat
-taskkill /f /im msedge.exe
-winget uninstall Microsoft.Edge --accept-source-agreements --silent
-winget uninstall Microsoft.EdgeWebView2Runtime --accept-source-agreements
-winget uninstall Microsoft.WindowsCamera_8wekyb3d8bbwe --accept-source-agreements --silent
+$isWin11 = (Get-WmiObject Win32_OperatingSystem).Caption -Match "Windows 11"
+
+# remove bloat https://github.com/2rf/winGetDebloated/blob/main/wingetdebloated.bat
+if ($isWin11)
+{
+    winget uninstall Microsoft.Todos_8wekyb3d8bbwe --accept-source-agreements --silent
+    winget uninstall Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe --accept-source-agreements --silent
+    winget uninstall Microsoft.BingNews_8wekyb3d8bbwe --accept-source-agreements --silent
+    winget uninstall MicrosoftTeams_8wekyb3d8bbwe --accept-source-agreements --silent
+    winget uninstall MicrosoftCorporationII.MicrosoftFamily_8wekyb3d8bbwe --accept-source-agreements --silent
+    winget uninstall MicrosoftCorporationII.QuickAssist_8wekyb3d8bbwe --accept-source-agreements --silent
+    winget uninstall disney+ --accept-source-agreements --silent
+    winget uninstall Clipchamp.Clipchamp_yxz26nhyzhsrt --accept-source-agreements --silent
+}
 winget uninstall Microsoft.GamingApp_8wekyb3d8bbwe --accept-source-agreements --silent
 winget uninstall Microsoft.XboxApp_8wekyb3d8bbwe --accept-source-agreements --silent
 winget uninstall Microsoft.Xbox.TCUI_8wekyb3d8bbwe --accept-source-agreements --silent
@@ -182,13 +194,3 @@ winget uninstall Microsoft.ZuneVideo_8wekyb3d8bbwe --accept-source-agreements --
 winget uninstall Microsoft.MixedReality.Portal_8wekyb3d8bbwe --accept-source-agreements --silent
 winget uninstall Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe --accept-source-agreements --silent
 winget uninstall Microsoft.GetHelp_8wekyb3d8bbwe --accept-source-agreements --silent
-winget uninstall Microsoft.OneDrive --accept-source-agreements --silent
-winget uninstall Microsoft.WindowsCalculator_8wekyb3d8bbwe --accept-source-agreements --silent
-winget uninstall Microsoft.Todos_8wekyb3d8bbwe --accept-source-agreements --silent
-winget uninstall Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe --accept-source-agreements --silent
-winget uninstall Microsoft.BingNews_8wekyb3d8bbwe --accept-source-agreements --silent
-winget uninstall MicrosoftTeams_8wekyb3d8bbwe --accept-source-agreements --silent
-winget uninstall MicrosoftCorporationII.MicrosoftFamily_8wekyb3d8bbwe --accept-source-agreements --silent
-winget uninstall MicrosoftCorporationII.QuickAssist_8wekyb3d8bbwe --accept-source-agreements --silent
-winget uninstall disney+ --accept-source-agreements --silent
-winget uninstall Clipchamp.Clipchamp_yxz26nhyzhsrt --accept-source-agreements --silent
