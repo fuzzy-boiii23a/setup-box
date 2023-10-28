@@ -26,7 +26,7 @@ winget install -e --id Git.Git --accept-source-agreements
 winget install GnuWin32.Make --accept-source-agreements
 
 # install llvm/clang
-winget install -e --id LLVM.LLVM --accept-source-agreements
+winget install -e -i --id LLVM.LLVM --accept-source-agreements
 
 # install ripgrep
 winget install BurntSushi.ripgrep.MSVC --accept-source-agreements
@@ -40,13 +40,22 @@ winget install -e --id Python.Python.3.10 --accept-source-agreements
 # install 7zip
 winget install -e --id 7zip.7zip --accept-source-agreements
 
+# install windbg
+winget install --id Microsoft.WinDbg  -e --accept-source-agreements
+
+# install x64dbg 
+winget install --id x64dbg.x64dbg  -e --accept-source-agreements
+
 # install rust
 curl.exe https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe -o rustup-init.exe
 .\rustup-init.exe
 Remove-Item rustup-init.exe -Force
 
 # refresh PATH so git, clang, and rust can be used
-$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") 
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+# install typical python packages
+pip install requests pefile fastapi uvicorn
 
 # install lazyvim
 git clone https://github.com/LazyVim/starter $env:LOCALAPPDATA\nvim
@@ -61,5 +70,44 @@ Remove-Item cygwin-setup.exe -Force
 # enable hyper-v
 Start-Process -FilePath powershell.exe -ArgumentList {"Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All -NoRestart"} -verb RunAs
 
-# init lazyvim and download all plugins
-nvim
+# remove bloat
+taskkill /f /im msedge.exe
+winget uninstall Microsoft.Edge --accept-source-agreements --silent
+winget uninstall Microsoft.EdgeWebView2Runtime --accept-source-agreements
+winget uninstall Microsoft.WindowsCamera_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.GamingApp_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.XboxApp_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.Xbox.TCUI_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.XboxSpeechToTextOverlay_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.XboxIdentityProvider_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.XboxGamingOverlay_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.XboxGameOverlay_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.ZuneMusic_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.Getstarted_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall 9NBLGGH42THS --accept-source-agreements --silent
+winget uninstall Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall 9NBLGGH5FV99 --accept-source-agreements --silent
+winget uninstall Microsoft.BingWeather_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall microsoft.windowscommunicationsapps_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.YourPhone_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.People_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.Wallet_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.WindowsMaps_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.Office.OneNote_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.WindowsSoundRecorder_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.ZuneVideo_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.MixedReality.Portal_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.GetHelp_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.OneDrive --accept-source-agreements --silent
+winget uninstall Microsoft.WindowsCalculator_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.Todos_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.BingNews_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall MicrosoftTeams_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall MicrosoftCorporationII.MicrosoftFamily_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall MicrosoftCorporationII.QuickAssist_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall disney+ --accept-source-agreements --silent
+winget uninstall Clipchamp.Clipchamp_yxz26nhyzhsrt --accept-source-agreements --silent
