@@ -14,7 +14,7 @@ winget install --source winget --exact --id Microsoft.WindowsSDK.10.0.22621
 winget install --source winget --exact --id Microsoft.WindowsWDK.10.0.22621
 
 # install NeoVim
-winget install Neovim.Neovim
+winget install Neovim.Neovim --accept-source-agreements
 
 # install chrome
 winget install -e --id Google.Chrome
