@@ -1,3 +1,8 @@
+# install winget, remove telemetry, disable services, and bloat
+$Code = Get-Content -path $pwd\clean_everything.ps1
+$Encoded = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($Code))
+Start-Process powershell.exe -Wait -Verb RunAs -ArgumentList "-EncodedCommand",$Encoded
+
 # install VS with SDK and WDK
 winget install --source winget --exact --id Microsoft.VisualStudio.2022.Community --accept-source-agreements --override "--wait --quiet --includeRecommended --add ProductLang En-us --config $pwd\BuildTools.vsconfig"
 winget install --source winget --exact --id Microsoft.WindowsSDK.10.0.22621 --accept-source-agreements
