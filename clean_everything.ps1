@@ -150,3 +150,45 @@ foreach ($service in $services) {
     Write-Output "Trying to disable $service"
     Get-Service -Name $service | Set-Service -StartupType Disabled
 }
+
+# remove bloat
+taskkill /f /im msedge.exe
+winget uninstall Microsoft.Edge --accept-source-agreements --silent
+winget uninstall Microsoft.EdgeWebView2Runtime --accept-source-agreements
+winget uninstall Microsoft.WindowsCamera_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.GamingApp_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.XboxApp_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.Xbox.TCUI_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.XboxSpeechToTextOverlay_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.XboxIdentityProvider_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.XboxGamingOverlay_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.XboxGameOverlay_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.ZuneMusic_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.Getstarted_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall 9NBLGGH42THS --accept-source-agreements --silent
+winget uninstall Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall 9NBLGGH5FV99 --accept-source-agreements --silent
+winget uninstall Microsoft.BingWeather_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall microsoft.windowscommunicationsapps_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.YourPhone_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.People_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.Wallet_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.WindowsMaps_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.Office.OneNote_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.WindowsSoundRecorder_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.ZuneVideo_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.MixedReality.Portal_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.GetHelp_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.OneDrive --accept-source-agreements --silent
+winget uninstall Microsoft.WindowsCalculator_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.Todos_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.PowerAutomateDesktop_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall Microsoft.BingNews_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall MicrosoftTeams_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall MicrosoftCorporationII.MicrosoftFamily_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall MicrosoftCorporationII.QuickAssist_8wekyb3d8bbwe --accept-source-agreements --silent
+winget uninstall disney+ --accept-source-agreements --silent
+winget uninstall Clipchamp.Clipchamp_yxz26nhyzhsrt --accept-source-agreements --silent
