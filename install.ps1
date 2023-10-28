@@ -37,6 +37,9 @@ winget install JesseDuffield.lazygit --accept-source-agreements
 # install python3
 winget install -e --id Python.Python.3.10 --accept-source-agreements
 
+# install 7zip
+winget install -e --id 7zip.7zip --accept-source-agreements
+
 # install rust
 curl.exe https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe -o rustup-init.exe
 .\rustup-init.exe
