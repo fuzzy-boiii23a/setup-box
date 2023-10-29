@@ -253,6 +253,11 @@ winget install --id x64dbg.x64dbg  -e --accept-source-agreements
 curl.exe https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe -o rustup-init.exe
 .\rustup-init.exe -y
 
+# install ninja
+curl.exe -L https://github.com/ninja-build/ninja/releases/download/v1.11.1/ninja-win.zip -o ninja-win.zip
+Expand-Archive .\ninja-win.zip -DestinationPath C:\ninja
+setx /M path "%path%;C:\ninja"
+
 # refresh PATH so git, clang, and rust can be used
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
