@@ -216,6 +216,9 @@ winget install --source winget --exact --id Microsoft.VisualStudio.2022.Communit
 winget install --source winget --exact --id Microsoft.WindowsSDK.10.0.22621 --accept-source-agreements
 winget install --source winget --exact --id Microsoft.WindowsWDK.10.0.22621 --accept-source-agreements
 
+# install cmake
+winget install -e --id Kitware.CMake --accept-source-agreements
+
 # install NeoVim
 winget install Neovim.Neovim --accept-source-agreements
 iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
