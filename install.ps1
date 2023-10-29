@@ -218,6 +218,9 @@ winget install --source winget --exact --id Microsoft.WindowsWDK.10.0.22621 --ac
 
 # install NeoVim
 winget install Neovim.Neovim --accept-source-agreements
+iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
+    ni "$(@($env:XDG_DATA_HOME, $env:LOCALAPPDATA)[$null -eq $env:XDG_DATA_HOME])/nvim-data/site/autoload/plug.vim" -Force
+Copy-Item -Path "$pwd\nvim" -Destination "$(@($env:XDG_DATA_HOME, $env:LOCALAPPDATA)[$null -eq $env:XDG_DATA_HOME])/nvim" -Recurse
 
 # install chrome
 winget install -e --id Google.Chrome --accept-source-agreements
@@ -225,18 +228,11 @@ winget install -e --id Google.Chrome --accept-source-agreements
 # install git
 winget install -e --id Git.Git --accept-source-agreements
 
-# install make
-winget install GnuWin32.Make --accept-source-agreements
-
 # install llvm/clang
-Write-Information "You will be prompted during installation of LLVM, ensure you add LLVM to the PATH for the current user when prompted"
 winget install -e -i --id LLVM.LLVM --accept-source-agreements
 
 # install ripgrep
 winget install BurntSushi.ripgrep.MSVC --accept-source-agreements
-
-# install lazygit
-winget install JesseDuffield.lazygit --accept-source-agreements
 
 # install python3
 winget install -e --id Python.Python.3.10 --accept-source-agreements
@@ -259,9 +255,6 @@ $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";"
 
 # install typical python packages
 pip install requests pefile fastapi uvicorn
-
-# install lazyvim
-git clone https://github.com/LazyVim/starter $env:LOCALAPPDATA\nvim
 
 # install cygwin with autoconf, bash, and make
 curl.exe https://cygwin.com/setup-x86_64.exe -o cygwin-setup.exe
