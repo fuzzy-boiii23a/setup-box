@@ -23,9 +23,6 @@ let g:vim_json_syntax_conceal = 0
 
 " Nice status bar
 Plug 'vim-airline/vim-airline'
-" Disable all extensions for vim-airline for better performance
-let g:airline_extensions=['coc']
-let g:airline#extensions#coc#enabled = 1
 
 " Displays directory file system on the side
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
