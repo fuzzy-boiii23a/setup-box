@@ -41,7 +41,8 @@ Plug 'gabrielelana/vim-markdown'
 Plug 'ludovicchabant/vim-gutentags'
 
 " Code completion
-Plug 'Valloric/YouCompleteMe'
+Plug 'ycm-core/YouCompleteMe', { 'do': 'python install.py --tern-completer' }
+
 
 call plug#end()
 
